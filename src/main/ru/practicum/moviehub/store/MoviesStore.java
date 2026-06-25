@@ -18,10 +18,10 @@ public class MoviesStore {
         movieList = new HashMap<>();
     }
 
-    public Movie addMovie(String title, int year){
+    public Movie addMovie(String title, int year) {
         Long id = ++idIterator;
-        Movie movie = new Movie(id,title,year);
-        movieList.put(id,movie);
+        Movie movie = new Movie(id, title, year);
+        movieList.put(id, movie);
         return movie;
     }
 
@@ -33,18 +33,18 @@ public class MoviesStore {
         return Optional.ofNullable(movieList.get(id));
     }
 
-    public List<Movie> findByYear(Integer year){
+    public List<Movie> findByYear(Integer year) {
         return movieList.values()
                 .stream()
                 .filter(m -> m.getYear().equals(year))
                 .toList();
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         movieList.remove(id);
     }
 
-    public void clearList(){
+    public void clearList() {
         movieList.clear();
     }
 
