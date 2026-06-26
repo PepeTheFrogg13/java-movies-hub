@@ -60,7 +60,7 @@ public class MoviesHandler extends BaseHttpHandler {
                             year = Integer.parseInt(entry[1]);
                             List<Movie> movieList = moviesStore.findByYear(year);
                             String json = gson.toJson(movieList);
-                            sendJson(exchange, 200, json);
+                            sendJson(exchange, 422, json);
                         } catch (Exception e) {
                             sendErrorResponse(exchange, "Некорректный параметр года", List.of("Не указан параметр year", "Указан неверный формат запроса"), 400);
                             return;
@@ -93,8 +93,7 @@ public class MoviesHandler extends BaseHttpHandler {
                 } else {
                     List<String> contentTypeValues = headers.get("Content-Type");
                     if (contentTypeValues.isEmpty()
-                            || !contentTypeValues.contains("application/json")
-                            || !contentTypeValues.contains("charset=UTF-8")) {
+                            || !contentTypeValues.contains("application/json; charset=UTF-8")) {
                         sendErrorResponse(exchange, "Неправильное значение заголовка Content-Type", List.of("Не указано значение application/json", "charset=UTF-8"), 415);
                         return;
                     }

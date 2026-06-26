@@ -227,7 +227,7 @@ public class MoviesApiTest {
         HttpResponse<String> resp =
                 client.send(req, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
 
-        assertEquals(200, resp.statusCode(), "GET /movies должен вернуть 200");
+        assertEquals(422, resp.statusCode(), "GET /movies должен вернуть 422");
 
         String contentTypeHeaderValue =
                 resp.headers().firstValue("Content-Type").orElse("");
@@ -250,7 +250,7 @@ public class MoviesApiTest {
         HttpResponse<String> resp =
                 client.send(req, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
 
-        assertEquals(200, resp.statusCode(), "GET /movies должен вернуть 200");
+        assertEquals(422, resp.statusCode(), "GET /movies должен вернуть 422");
 
         String contentTypeHeaderValue =
                 resp.headers().firstValue("Content-Type").orElse("");
@@ -291,8 +291,7 @@ public class MoviesApiTest {
 
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create(BASE + "/movies")) // !!! Добавьте правильный URI
-                .header("Content-Type", "application/json")
-                .header("Content-Type", "charset=UTF-8")// !!! Добавьте правильный URI
+                .header("Content-Type", "application/json; charset=UTF-8")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 
@@ -317,8 +316,7 @@ public class MoviesApiTest {
 
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create(BASE + "/movies")) // !!! Добавьте правильный URI
-                .header("Content-Type", "application/json")
-                .header("Content-Type", "charset=UTF-8")// !!! Добавьте правильный URI
+                .header("Content-Type", "application/json; charset=UTF-8")// !!! Добавьте правильный URI
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 
@@ -343,8 +341,7 @@ public class MoviesApiTest {
 
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create(BASE + "/movies")) // !!! Добавьте правильный URI
-                .header("Content-Type", "application/json")
-                .header("Content-Type", "charset=UTF-8")// !!! Добавьте правильный URI
+                .header("Content-Type", "application/json; charset=UTF-8")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 
@@ -369,8 +366,7 @@ public class MoviesApiTest {
 
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create(BASE + "/movies")) // !!! Добавьте правильный URI
-                .header("Content-Type", "application/json")
-                .header("Content-Type", "charset=UTF-8")// !!! Добавьте правильный URI
+                .header("Content-Type", "application/json; charset=UTF-8")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 
@@ -420,8 +416,7 @@ public class MoviesApiTest {
 
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create(BASE + "/movies")) // !!! Добавьте правильный URI
-                .header("Content-Type", "application/json")
-                .header("Content-Type", "charset=UTF-8")// !!!
+                .header("Content-Type", "application/json; charset=UTF-8")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 

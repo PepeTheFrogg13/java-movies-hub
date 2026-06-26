@@ -14,7 +14,7 @@ public abstract class BaseHttpHandler implements HttpHandler {
         // !!! Реализуйте общий для всех хендлеров метод
         // для отправки ответа с телом в формате JSON
         ex.getResponseHeaders().set("Content-Type", CT_JSON);
-        ex.sendResponseHeaders(status, 0);
+        ex.sendResponseHeaders(status, json.getBytes(StandardCharsets.UTF_8).length);
         try (OutputStream os = ex.getResponseBody()) {
             os.write(json.getBytes(StandardCharsets.UTF_8));
         }
